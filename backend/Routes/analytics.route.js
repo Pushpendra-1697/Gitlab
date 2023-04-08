@@ -14,6 +14,17 @@ analyticsRouter.get('/users', async (req, res) => {
     }
 });
 
+analyticsRouter.get('/posts', async (req, res) => {
+    const query = req.query;
+    try {
+        const posts = await PostModel.find(query);
+        res.status(200).send({ msg: `Total no. of Posts ${posts.length}`, posts });
+    } catch (err) {
+        console.log(err);
+        res.status(404).send({ Error: err.message });
+    }
+});
+
 analyticsRouter.get('/users/top-active', async (req, res) => {
     try {
         const users = await PostModel.aggregate([

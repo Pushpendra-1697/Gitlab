@@ -26,7 +26,7 @@ export const addUser = (message) => async (dispatch) => {
 export const updateUser = (id, changes) => async (dispatch) => {
     dispatch({ type: USER_LOADING });
     try {
-        let res = await axios.patch(`${backend_url}/users/${id}`, {
+        let res = await axios.put(`${backend_url}/users/${id}`, {
             ...changes
         });
         dispatch({ type: UPDATE_USER, payload: res.data.user });

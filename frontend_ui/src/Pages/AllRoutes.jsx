@@ -6,6 +6,7 @@ import Users from './Users';
 import UserAnalytics from '../Components/UserAnalytics';
 import PostAnalytics from '../Components/PostAnalytics';
 import SingleUser from './SingleUser';
+import SinglePost from './SinglePost';
 
 
 const AllRoutes = () => {
@@ -17,6 +18,7 @@ const AllRoutes = () => {
                 <Route path='/' element={<Users />}></Route>
                 <Route path='/userAnalytics' element={<UserAnalytics />}></Route>
                 <Route path='/:user_id' element={<SingleUser />}></Route>
+                <Route path='/posts/:post_id' element={<SinglePost />}></Route>
             </Routes>
         </Box>
     );

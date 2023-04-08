@@ -23,7 +23,7 @@ userRouter.get('/:id', async (req, res) => {
     }
 });
 
-userRouter.patch('/:id', async (req, res) => {
+userRouter.put('/:id', async (req, res) => {
     const { id } = req.params;
     const payload = req.body;
     try {
