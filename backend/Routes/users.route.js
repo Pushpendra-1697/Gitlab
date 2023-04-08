@@ -7,7 +7,7 @@ userRouter.post('/', async (req, res) => {
     try {
         const user = new UserModel(payload);
         await user.save();
-        res.status(201).send({ msg: 'Registered Successfully' });
+        res.status(201).send({ msg: 'Registered Successfully', users: user });
     } catch (err) {
         res.status(404).send({ msg: "Registation failed" });
     }

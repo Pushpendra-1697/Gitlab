@@ -4,7 +4,8 @@ require('dotenv').config();
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 const { connection } = require('./Configs/Config');
-const { userRouter } = require('./Routes/users.route')
+const { userRouter } = require('./Routes/users.route');
+const { analyticsRouter } = require('./Routes/analytics.route');
 
 //Inbuilt middlewares;
 app.use(cors());
@@ -16,6 +17,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/users', userRouter);
+app.use('/analytics', analyticsRouter);
 
 
 app.listen(PORT, async () => {
