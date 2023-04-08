@@ -16,6 +16,7 @@ export const addUser = (message) => async (dispatch) => {
     dispatch({ type: USER_LOADING });
     try {
         let res = await axios.post(`${backend_url}/users/`, message);
+        alert(`${res.data.msg}`);
         dispatch({ type: ADD_USER, payload: res.data.users });
     } catch (e) {
         dispatch({ type: USER_ERROR, payload: e.message });
@@ -25,10 +26,10 @@ export const addUser = (message) => async (dispatch) => {
 export const updateUser = (id, changes) => async (dispatch) => {
     dispatch({ type: USER_LOADING });
     try {
-        let res = await axios.patch(`${backend_url}/dashboard/patch/${id}`, {
+        let res = await axios.patch(`${backend_url}/users/${id}`, {
             ...changes
-        }, { headers: { authentication: localStorage.getItem('token') } });
-        dispatch({ type: UPDATE_USER, payload: res.data });
+        });
+        dispatch({ type: UPDATE_USER, payload: res.data.user });
     } catch (e) {
         dispatch({ type: USER_ERROR, payload: e.message });
     }
@@ -37,10 +38,8 @@ export const updateUser = (id, changes) => async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
     dispatch({ type: USER_LOADING });
     try {
-        let res = await axios.delete(`${backend_url}/dashboard/delete/${id}`, {
-            headers: { authentication: localStorage.getItem('token') }
-        });
-        dispatch({ type: REMOVE_USER, payload: res.data._id });
+        let res = await axios.delete(`${backend_url}/users/${id}`);
+        dispatch({ type: REMOVE_USER, payload: res.data.user._id });
     } catch (e) {
         dispatch({ type: USER_ERROR, payload: e.message });
     }

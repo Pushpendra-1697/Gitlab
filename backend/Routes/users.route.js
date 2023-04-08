@@ -16,18 +16,22 @@ userRouter.post('/', async (req, res) => {
 userRouter.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const user = await UserModel.find({ _id: id });
+        const user = await UserModel.findOne({ _id: id });
         res.status(200).send({ "msg": `Successfully get user which id is ${id}`, user });
     } catch (err) {
         res.status(404).send({ Error: err.message });
     }
 });
 
-userRouter.put('/:id', async (req, res) => {
+userRouter.patch('/:id', async (req, res) => {
     const { id } = req.params;
     const payload = req.body;
     try {
-        await UserModel.findByIdAndUpdate({ _id: id }, payload);
+        if (payload.email == "") {
+            await UserModel.findByIdAndUpdate({ _id: id }, { name: payload.name });
+        } else {
+            await UserModel.findByIdAndUpdate({ _id: id }, payload);
+        }
         let user = await UserModel.findOne({ _id: id });
         res.status(200).send({ "msg": `Successfully update user which id is ${id}`, user });
     } catch (err) {
