@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const UserModel = require('../Models/users.model');
+const PostModel = require('../Models/posts.model');
 const analyticsRouter = Router();
 
 analyticsRouter.get('/users', async (req, res) => {
@@ -14,7 +15,20 @@ analyticsRouter.get('/users', async (req, res) => {
 });
 
 analyticsRouter.get('/users/top-active', async (req, res) => {
-    res.send('top-active')
+    try {
+        const users = await PostModel.aggregate([
+            { $group: { _id: "$user_id", count: { $sum: 1 } } },
+            { $sort: { count: -1 } },
+            { $limit: 5 },
+            { $lookup: { from: "users", localField: "_id", foreignField: "_id", as: "user" } },
+            { $unwind: "$user" },
+            { $project: { _id: 0, user_id: "$user._id", name: "$user.name", email: "$user.email", post_count: "$count" } }
+        ]);
+        res.status(200).send({ msg: `Top-active users`, users });
+    } catch (err) {
+        console.log(err);
+        res.status(404).send({ Error: err.message });
+    }
 });
 
 

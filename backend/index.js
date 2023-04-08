@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const { connection } = require('./Configs/Config');
 const { userRouter } = require('./Routes/users.route');
 const { analyticsRouter } = require('./Routes/analytics.route');
+const { postRouter } = require('./Routes/posts.route');
 
 //Inbuilt middlewares;
 app.use(cors());
@@ -18,6 +19,7 @@ app.get('/', async (req, res) => {
 
 app.use('/users', userRouter);
 app.use('/analytics', analyticsRouter);
+app.use('/posts', postRouter);
 
 
 app.listen(PORT, async () => {

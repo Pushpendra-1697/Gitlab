@@ -15,9 +15,6 @@ const Users = () => {
     dispatch(getUsers());
   }, []);
 
-
-  console.log(users)
-
   return (
     <Box>
       <Box display={"flex"} justifyContent={"space-evenly"} mt="5%">
@@ -36,11 +33,9 @@ const Users = () => {
       {error && <Box display={"flex"} justifyContent="center" alignItems={"center"}>
         <Alert status='error' w="300px" >
           <AlertIcon />
-          {`Something went Wrong`}
+          {`Something went Wrong 😒`}
         </Alert>
       </Box>}
-
-
 
       <UserForm />
 

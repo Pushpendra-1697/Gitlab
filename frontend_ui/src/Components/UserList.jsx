@@ -68,7 +68,7 @@ const UserList = ({ users }) => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {users.map(({ _id, name, email, createdAt, updatedAt }) =>
+                    {users && users.map(({ _id, name, email, createdAt, updatedAt }) =>
                         <Tr key={_id}>
                             <Td>{name}</Td>
                             <Td>{email}</Td>
