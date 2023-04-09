@@ -1,7 +1,7 @@
 import { Box, useDisclosure, Text, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, Input, ModalFooter, Button, Textarea } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiFillLike, AiFillDislike } from "react-icons/ai";
 import { GrFormView } from 'react-icons/gr';
 import { deletePost, updatePost } from '../redux/Posts/post.action';
 import { Link } from 'react-router-dom';
@@ -52,7 +52,7 @@ const PostList = ({ posts }) => {
     return (
         <>
             <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"20px"}>
-                {posts && posts.map(({ content, _id }) =>
+                {posts && posts.map(({ content, _id, likes }) =>
                     <Box border={"1px solid red"}>
                         <Text textAlign={"center"}>{content}</Text>
                         <Box display={"flex"} justifyContent={"space-evenly"}>
@@ -61,6 +61,13 @@ const PostList = ({ posts }) => {
                             <AiFillEdit onClick={() => handleEdit(_id)}></AiFillEdit>
 
                             <AiFillDelete onClick={() => handelDelete(_id)}></AiFillDelete>
+                        </Box>
+
+
+                        <Box display={"flex"} justifyContent={"space-evenly"}>
+                            <AiFillLike></AiFillLike>
+                            <Text>{likes}</Text>
+                            <AiFillDislike></AiFillDislike>
                         </Box>
                     </Box>
                 )}

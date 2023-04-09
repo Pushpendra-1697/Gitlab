@@ -42,5 +42,18 @@ analyticsRouter.get('/users/top-active', async (req, res) => {
     }
 });
 
+analyticsRouter.get('/posts/top-liked', async (req, res) => {
+    try {
+        const posts = await PostModel.aggregate([
+            { $sort: { likes: -1 } },
+            { $limit: 5 }
+        ]);
+        res.status(200).send({ msg: `Top-liked posts`, posts });
+    } catch (err) {
+        console.log(err);
+        res.status(404).send({ Error: err.message });
+    }
+});
+
 
 module.exports = { analyticsRouter };

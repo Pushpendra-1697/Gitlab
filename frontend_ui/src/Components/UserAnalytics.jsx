@@ -63,9 +63,6 @@ const UserAnalytics = () => {
         </Tbody>
       </Table>
 
-
-
-
     </Box>
   );
 }

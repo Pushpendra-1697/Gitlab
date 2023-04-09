@@ -9,7 +9,7 @@ postRouter.post('/', async (req, res) => {
         await post.save();
         res.status(201).send({ msg: 'Post Successfully Created', posts: post });
     } catch (err) {
-        res.status(404).send({ msg: "Post failed" });
+        res.status(404).send({ msg: "Post Failed" });
     }
 });
 
@@ -39,7 +39,7 @@ postRouter.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         let post = await PostModel.findByIdAndDelete({ _id: id });
-        res.send({ "msg": `Successfully delete post which id is ${id}`, post });
+        res.send({ "msg": `Successfully delete Post which id is ${id}`, post });
     } catch (err) {
         res.status(404).send({ Error: err.message });
     }
