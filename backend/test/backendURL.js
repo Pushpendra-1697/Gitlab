@@ -1,2 +1,2 @@
-var backendURL = "http://localhost:8080";
+var backendURL = "https://wandering-dove-sheath-dress.cyclic.app/";
 module.exports = { backendURL };

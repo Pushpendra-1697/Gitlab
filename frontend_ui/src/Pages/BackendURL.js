@@ -1,1 +1,1 @@
-export const backend_url = "http://localhost:8080";
+export const backend_url = "https://wandering-dove-sheath-dress.cyclic.app/";

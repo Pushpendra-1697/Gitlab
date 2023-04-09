@@ -19,8 +19,8 @@ describe("GET API Request Tests", async () => {
         expect(res.status).equal(200);
     });
     it("Should be able to get post by id", async () => {
-        const res = await axios.get(`${backendURL}/posts/643195a8e6830da3cfddf2ed`);
-        expect(res.data.post._id).equal(`643195a8e6830da3cfddf2ed`);
+        const res = await axios.get(`${backendURL}/posts/643195d3e6830da3cfddf2f1`);
+        expect(res.data.post._id).equal(`643195d3e6830da3cfddf2f1`);
         expect(res.status).equal(200);
     });
     it("Should top 5 active users", async () => {

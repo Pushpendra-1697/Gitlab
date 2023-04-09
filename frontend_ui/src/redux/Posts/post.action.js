@@ -2,10 +2,10 @@ import axios from "axios";
 import { backend_url } from '../../Pages/BackendURL';
 import { ADD_POST, POST_ERROR, POST_LOADING, POST_SUCCESS, REMOVE_POST, UPDATE_POST } from "./post.type";
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
     dispatch({ type: POST_LOADING });
     try {
-        let res = await axios.get(`${backend_url}/analytics/posts`);
+        let res = await axios.get(`${backend_url}/analytics/posts?page=` + page);
         dispatch({ type: POST_SUCCESS, payload: res.data.posts });
     } catch (e) {
         dispatch({ type: POST_ERROR, payload: e.message });

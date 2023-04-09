@@ -13,11 +13,11 @@ describe("PUT API Request Tests", async () => {
         expect(res.status).equal(200);
     });
     it("Should update a post's content by post_id", async () => {
-        const randomParagraph = faker.lorem.paragraph();
-        const res = await axios.put(`${backendURL}/posts/643195a8e6830da3cfddf2ed`, {
-            content: randomParagraph,
+        const randomWords = faker.lorem.words(4);
+        const res = await axios.put(`${backendURL}/posts/643195cae6830da3cfddf2ef`, {
+            content: randomWords,
         });
-        expect(res.data.post.content).equal(randomParagraph);
+        expect(res.data.post.content).equal(randomWords);
         expect(res.status).equal(200);
     });
 });

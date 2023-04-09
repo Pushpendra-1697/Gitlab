@@ -8,20 +8,20 @@ describe("POST API Request Tests", async () => {
         const randomName = faker.name.firstName();
         const res = await axios.post(`${backendURL}/users`, {
             name: randomName,
-            email: "narayan123@gmail.com",
+            email: `${randomName}@gmail.com`,
             bio: "Business man"
         });
         expect(res.data.users.name).equal(randomName);
-        expect(res.data.users.email).equal("narayan123@gmail.com");
+        expect(res.data.users.email).equal(`${randomName}@gmail.com`);
         expect(res.status).equal(201);
     });
     it("Should create a new post", async () => {
-        const randomParagraph = faker.lorem.paragraph();
+        const randomWords = faker.lorem.words(4);
         const res = await axios.post(`${backendURL}/posts`, {
-            content: randomParagraph,
+            content: randomWords,
         }, { headers: { user_id: "6432e069d2b4bbc02016324c" } });
         expect(res.data.posts.likes).equal(0);
-        expect(res.data.posts.content).equal(randomParagraph);
+        expect(res.data.posts.content).equal(randomWords);
         expect(res.status).equal(201);
     });
     it("Should increased the likes by post_id", async () => {

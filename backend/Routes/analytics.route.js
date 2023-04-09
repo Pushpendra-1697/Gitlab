@@ -15,10 +15,21 @@ analyticsRouter.get('/users', async (req, res) => {
 });
 
 analyticsRouter.get('/posts', async (req, res) => {
-    const query = req.query;
+    let { page = 1, limit = 10 } = req.query;
     try {
-        const posts = await PostModel.find(query);
-        res.status(200).send({ msg: `Total no. of Posts ${posts.length}`, posts });
+        if (page) {
+            if (Number(page) === 1) {
+                let posts = await PostModel.find().skip(0).limit(+limit);
+                res.status(200).send({ msg: `Total no. of Posts ${posts.length}`, posts });
+            } else {
+                let s = Number(page) * Number(limit) - Number(limit);
+                let posts = await PostModel.find().skip(s).limit(+limit);
+                res.status(200).send({ msg: `Total no. of Posts ${posts.length}`, posts });
+            }
+        } else {
+            const posts = await PostModel.find();
+            res.status(200).send({ msg: `Total no. of Posts ${posts.length}`, posts });
+        }
     } catch (err) {
         console.log(err);
         res.status(404).send({ Error: err.message });
