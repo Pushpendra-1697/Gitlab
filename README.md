@@ -13,8 +13,11 @@ Node.js, Express.js, mongodb (NoSQL), mongoose for connect database to server, c
 
 # Some instructions to run locally
 For Setup ---> npm install
+
 For Frontend: ---> npm run start
+
 For Backend: ----> npm run server
+
 PORT ---> 3000 || 8080
 
 # Test cases to verify the functionality of my API (API Testing) by Mocha, Chai JavaScript testing framework
