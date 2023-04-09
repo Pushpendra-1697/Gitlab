@@ -4,15 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^7.0.3"
+    "mochawesome": "^7.1.3",
+    "mongoose": "^7.0.3",
+    "properties-reader": "^2.2.0",
+    "rimraf": "^4.4.1"
+  },
+  "devDependencies": {
+    "axios": "^1.3.5",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
