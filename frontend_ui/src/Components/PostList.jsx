@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { AiFillDelete, AiFillEdit, AiFillLike, AiFillDislike } from "react-icons/ai";
 import { GrFormView } from 'react-icons/gr';
-import { deletePost, updatePost } from '../redux/Posts/post.action';
+import { deletePost, updatePost, updatePostLike, updatePostUnLike } from '../redux/Posts/post.action';
 import { Link } from 'react-router-dom';
 
 
@@ -15,6 +15,7 @@ const PostList = ({ posts }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idPost, setIdPost] = useState('');
     const [formData, setFormData] = useState(initialState);
+    const [likesCount, setLikesCount] = useState(0);
 
 
     const handleChange = (e) => {
@@ -37,8 +38,6 @@ const PostList = ({ posts }) => {
         });
     };
 
-
-
     const handleEdit = (_id) => {
         setIdPost(_id);
         onOpen();
@@ -48,12 +47,24 @@ const PostList = ({ posts }) => {
         dispatch(deletePost(_id));
     };
 
+    const handleLikes = async (_id) => {
+        setLikesCount(likesCount + 1);
+        dispatch(updatePostLike(_id, likesCount));
+        setLikesCount(0);
+    };
+
+    const handleUnLikes = async (_id) => {
+        setLikesCount(likesCount - 1);
+        dispatch(updatePostUnLike(_id, likesCount));
+        setLikesCount(0);
+    };
+
     const { content } = formData;
     return (
         <>
             <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={"20px"}>
                 {posts && posts.map(({ content, _id, likes }) =>
-                    <Box border={"1px solid red"}>
+                    <Box border={"1px solid red"} key={_id}>
                         <Text textAlign={"center"}>{content}</Text>
                         <Box display={"flex"} justifyContent={"space-evenly"}>
                             <Link to={`/posts/${_id}`}><GrFormView fontSize={"23px"} /></Link>
@@ -65,9 +76,11 @@ const PostList = ({ posts }) => {
 
 
                         <Box display={"flex"} justifyContent={"space-evenly"}>
-                            <AiFillLike></AiFillLike>
-                            <Text>{likes}</Text>
-                            <AiFillDislike></AiFillDislike>
+                            <Box display={"flex"}>
+                                <AiFillLike color='green' onClick={() => handleLikes(_id)}></AiFillLike>
+                                <Text>{likes}</Text>
+                            </Box>
+                            <Button color={"red"} isDisabled={likes <= 0}> <AiFillDislike onClick={() => handleUnLikes(_id)}></AiFillDislike> </Button>
                         </Box>
                     </Box>
                 )}

@@ -35,6 +35,26 @@ export const updatePost = (id, changes) => async (dispatch) => {
     }
 };
 
+export const updatePostLike = (id, changes = 0) => async (dispatch) => {
+    dispatch({ type: POST_LOADING });
+    try {
+        let res = await axios.post(`${backend_url}/posts/${id}/like?like=${changes}`);
+        dispatch({ type: UPDATE_POST, payload: res.data.posts });
+    } catch (e) {
+        dispatch({ type: POST_ERROR, payload: e.message });
+    }
+};
+
+export const updatePostUnLike = (id, changes = 0) => async (dispatch) => {
+    dispatch({ type: POST_LOADING });
+    try {
+        let res = await axios.post(`${backend_url}/posts/${id}/unlike?unlike=${changes}`);
+        dispatch({ type: UPDATE_POST, payload: res.data.posts });
+    } catch (e) {
+        dispatch({ type: POST_ERROR, payload: e.message });
+    }
+};
+
 export const deletePost = (id) => async (dispatch) => {
     dispatch({ type: POST_LOADING });
     try {
