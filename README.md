@@ -25,11 +25,15 @@ To Run Test-Cases use ------> npm test (or) npm run test
  
 # Some HTTP (Hyper Text Transfer Protocol) Status Codes Which I used
 404 ---> Not Found/failure
+
 200 --->  OK/Success/get/put
+
 201 ---> Created/post
+
 204 ---> Delete/Remove
 
 # Some Endpoints's Routes output/response Checked by Thunder Client VS Code
+
 # A) User Endpoints
 POST /users: { msg: 'Registered Successfully', users: user }
 GET /users/{id}: { "msg": `Successfully get user which id is ${id}`, user }
@@ -37,6 +41,7 @@ PUT /users/{id}: { "msg": `Successfully update user which id is ${id}`, user }
 DELETE /users/{id}: { "msg": `Successfully delete user which id is ${id}`, user }
 GET /analytics/users: { msg: `Total no. of Registered users ${users.length}`, users }
 GET /analytics/users/top-active: { msg: `Top-active users`, users }
+
 # B) Post Endpoints
 POST /posts: { msg: 'Post Successfully Created', posts: post }
 GET /posts/{id}: { "msg": `Successfully get Post which id is ${id}`, post }
