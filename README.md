@@ -23,7 +23,7 @@ PORT ---> 3000 || 8080
 # API Testing by Mocha, Chai JavaScript testing framework
 To Run Test-Cases use ------> npm test (or) npm run test
  
-# Some HTTP (Hyper Text Transfer Protocol) Status Codes Which I used
+# Some HTTP (Hyper Text Transfer Protocol) Status Code Which I used
 404 ---> Not Found/failure
 
 200 --->  OK/Success/get/put
