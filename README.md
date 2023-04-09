@@ -36,20 +36,32 @@ To Run Test-Cases use ------> npm test (or) npm run test
 
 # A) User Endpoints
 POST /users: { msg: 'Registered Successfully', users: user }
+
 GET /users/{id}: { "msg": `Successfully get user which id is ${id}`, user }
+
 PUT /users/{id}: { "msg": `Successfully update user which id is ${id}`, user }
+
 DELETE /users/{id}: { "msg": `Successfully delete user which id is ${id}`, user }
+
 GET /analytics/users: { msg: `Total no. of Registered users ${users.length}`, users }
+
 GET /analytics/users/top-active: { msg: `Top-active users`, users }
 
 # B) Post Endpoints
 POST /posts: { msg: 'Post Successfully Created', posts: post }
+
 GET /posts/{id}: { "msg": `Successfully get Post which id is ${id}`, post }
+
 PUT /posts/{id}: { "msg": `Successfully update Post which id is ${id}`, post }
+
 DELETE /posts/{id}: { "msg": `Successfully delete Post which id is ${id}`, post }
+
 POST /posts/{id}/like: { msg: `Post's Like increased Successfully which id is ${id}`, posts: post }
+
 POST /posts/{id}/unlike: { msg: `Post's Like decreased Successfully which id is ${id}`, posts: post }
+
 GET /analytics/posts: { msg: `Total no. of Posts ${posts.length}`, posts }
+
 GET /analytics/posts/top-liked: { msg: `Top-liked posts`, posts }
 
 # Some Project Screenshots:
