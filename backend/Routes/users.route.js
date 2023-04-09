@@ -43,7 +43,7 @@ userRouter.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         let user = await UserModel.findByIdAndDelete({ _id: id });
-        res.send({ "msg": `Successfully delete user which id is ${id}`, user });
+        res.status(204).send({ "msg": `Successfully delete user which id is ${id}`, user });
     } catch (err) {
         res.status(404).send({ Error: err.message });
     }

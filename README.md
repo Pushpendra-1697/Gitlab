@@ -9,7 +9,7 @@ This project will be a web application that allows users to create and share pos
 # A) Frontend
 React (JSX Syntax), Redux, Chakra-ui Library for Styling & Modal, axios for handling asynchrous request, react-router-dom for routing or Navigate from one page to another, chakra-icons & react-icons.
 # B) Backend
-Node.js, Express.js, mongodb (NoSQL), mongoose for connect database to server, cors for handling the cors error, axios and Mocha, Chai used for testing REST APIs in Node.JS.
+Node.js, Express.js, mongodb (NoSQL), mongoose for connect database to server, cors for handling the cors error, axios, @faker-js/faker for creating random userName/random lorem and Mocha, Chai used for testing REST APIs in Node.JS.
 
 # Some instructions to run locally
 For Setup ---> npm install
@@ -21,19 +21,11 @@ PORT ---> 3000 || 8080
 # To Run Test-Cases use
 npm test (or) npm run test 
 
-
-
-
-
-
-
-
-
-
 # Some HTTP (Hyper Text Transfer Protocol) Status Codes Which I used
 404 ---> Not Found/failure
-200 --->  OK/Success
-201 ---> Created
+200 --->  OK/Success/get/put
+201 ---> Created/post
+204 ---> Delete/Remove
 
 # Some Endpoints's Routes output/response Checked by Thunder Client VS Code
 # A) User Endpoints
@@ -52,6 +44,10 @@ POST /posts/{id}/like: { msg: `Post's Like increased Successfully which id is ${
 POST /posts/{id}/unlike: { msg: `Post's Like decreased Successfully which id is ${id}`, posts: post }
 GET /analytics/posts: { msg: `Total no. of Posts ${posts.length}`, posts }
 GET /analytics/posts/top-liked: { msg: `Top-liked posts`, posts }
+
+# Some Project Screenshots:
+# A) For Computer Screen
+# B) For Mobile/Tablet Screen
 
 
 
