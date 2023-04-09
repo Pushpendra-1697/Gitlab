@@ -1,4 +1,4 @@
-import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
 import React, { useState } from 'react';
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { GrFormView } from 'react-icons/gr';
@@ -39,8 +39,6 @@ const UserList = ({ users }) => {
         });
     };
 
-
-
     const handleEdit = (_id) => {
         setIdUser(_id);
         onOpen();
@@ -50,45 +48,43 @@ const UserList = ({ users }) => {
         dispatch(deleteUser(_id));
     };
 
-
-
     const { name, email } = formData;
     return (
         <Box>
-            <Table variant={"striped"}>
-                <Thead>
-                    <Tr>
-                        <Th>Name</Th>
-                        <Th>Email</Th>
-                        <Th>Registered At</Th>
-                        <Th>Updated At</Th>
-                        <Th>View</Th>
-                        <Th>Edit</Th>
-                        <Th>Delete</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {users && users.map(({ _id, name, email, createdAt, updatedAt }) =>
-                        <Tr key={_id}>
-                            <Td>{name}</Td>
-                            <Td>{email}</Td>
-                            <Td>{createdAt}</Td>
-                            <Td>{updatedAt}</Td>
-
-                            <Td> <Link to={`/${_id}`}><GrFormView fontSize={"23px"} /></Link> </Td>
-
-                            <Td><AiFillEdit onClick={() => handleEdit(_id)}></AiFillEdit></Td>
-
-                            <Td><AiFillDelete onClick={() => handelDelete(_id)}></AiFillDelete></Td>
-
+            <TableContainer>
+                <Table size='sm'>
+                    <Thead>
+                        <Tr>
+                            <Th>Name</Th>
+                            <Th>Email</Th>
+                            <Th>Registered At</Th>
+                            <Th>Updated At</Th>
+                            <Th>View</Th>
+                            <Th>Edit</Th>
+                            <Th>Delete</Th>
                         </Tr>
-                    )}
-                </Tbody>
-            </Table>
+                    </Thead>
+                    <Tbody>
+                        {users && users.map(({ _id, name, email, createdAt, updatedAt }) =>
+                            <Tr key={_id}>
+                                <Td>{name}</Td>
+                                <Td>{email}</Td>
+                                <Td>{createdAt}</Td>
+                                <Td>{updatedAt}</Td>
 
+                                <Td> <Link to={`/${_id}`}><GrFormView fontSize={"23px"} /></Link> </Td>
 
+                                <Td color={"green"}><AiFillEdit onClick={() => handleEdit(_id)}></AiFillEdit></Td>
 
+                                <Td color={"red"}><AiFillDelete onClick={() => handelDelete(_id)}></AiFillDelete></Td>
 
+                            </Tr>
+                        )}
+                    </Tbody>
+                </Table>
+            </TableContainer>
+
+            {/* Chakra-ui Modal */}
             <Box>
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
@@ -137,7 +133,6 @@ const UserList = ({ users }) => {
                     </ModalContent>
                 </Modal>
             </Box>
-
 
         </Box>
     );

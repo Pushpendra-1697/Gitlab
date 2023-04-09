@@ -15,7 +15,7 @@ export const getPosts = () => async (dispatch) => {
 export const addPost = (message) => async (dispatch) => {
     dispatch({ type: POST_LOADING });
     try {
-        let res = await axios.post(`${backend_url}/posts/`, message);
+        let res = await axios.post(`${backend_url}/posts/`, message, { headers: { user_id: localStorage.getItem('user_id') } });
         alert(`${res.data.msg}`);
         dispatch({ type: ADD_POST, payload: res.data.posts });
     } catch (e) {

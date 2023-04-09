@@ -18,6 +18,7 @@ export const addUser = (message) => async (dispatch) => {
         let res = await axios.post(`${backend_url}/users/`, message);
         alert(`${res.data.msg}`);
         dispatch({ type: ADD_USER, payload: res.data.users });
+        localStorage.setItem('user_id', res.data.users._id);
     } catch (e) {
         dispatch({ type: USER_ERROR, payload: e.message });
     }

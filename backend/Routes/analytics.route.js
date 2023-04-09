@@ -55,5 +55,4 @@ analyticsRouter.get('/posts/top-liked', async (req, res) => {
     }
 });
 
-
 module.exports = { analyticsRouter };

@@ -13,9 +13,6 @@ const UserForm = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
 
-
-
-
   const handleChange = (e) => {
     const { value, name } = e.target;
     setFormData({ ...formData, [name]: value });

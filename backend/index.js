@@ -17,11 +17,12 @@ app.get('/', async (req, res) => {
     res.send('Welcome in Adobe');
 });
 
+//All Routes for users, posts, analytics pages
 app.use('/users', userRouter);
-app.use('/analytics', analyticsRouter);
 app.use('/posts', postRouter);
+app.use('/analytics', analyticsRouter);
 
-
+//server code to detect automatic changes by nodemon external module
 app.listen(PORT, async () => {
     try {
         await connection;

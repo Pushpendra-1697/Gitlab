@@ -4,7 +4,8 @@ const postRouter = Router();
 
 postRouter.post('/', async (req, res) => {
     const { content } = req.body;
-    const payload = { content, likes: 0, user_id: "64319bf6298a195a1f015db1" };
+    const { user_id } = req.headers;
+    const payload = { content, likes: 0, user_id };
     try {
         const post = new PostModel(payload);
         await post.save();
@@ -71,6 +72,5 @@ postRouter.delete('/:id', async (req, res) => {
         res.status(404).send({ Error: err.message });
     }
 });
-
 
 module.exports = { postRouter };

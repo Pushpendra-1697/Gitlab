@@ -3,16 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { BiLoaderCircle } from "react-icons/bi";
 import { backend_url } from '../Pages/BackendURL';
+import { AiFillLike } from "react-icons/ai";
 
 const PostAnalytics = () => {
   const { loading, error, posts } = useSelector((store) => store.postManager);
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
     getData();
   }, []);
-
 
   const getData = async () => {
     try {
@@ -24,11 +23,9 @@ const PostAnalytics = () => {
     }
   };
 
-  console.log(data);
-
   return (
     <Box>
-      <Heading textAlign={"center"} fontFamily={"20px"}>Total No. of Posts {posts.length}</Heading>
+      <Heading textAlign={"center"} fontSize={"20px"}>Total No. of Posts {posts.length}</Heading>
       {loading && (
         <Box display={"flex"} justifyContent="center" alignItems={"center"}>
           {" "}
@@ -42,16 +39,15 @@ const PostAnalytics = () => {
         </Alert>
       </Box>}
 
+      <Heading m={["15% 0 4% 0", "15% 0 4% 0", "3% 0 2% 0"]} textAlign={"center"} fontSize={"20px"}>Most Top Liked Posts {data.length}</Heading>
 
-      <Heading m="3% 0 2% 0" textAlign={"center"} fontFamily={"20px"}>Most Top Liked {data.length}</Heading>
-
-      <Box display={"grid"} gridTemplateColumns={"repeat(3,1fr)"} gap={'20px'}>
+      <Box display={"grid"} gridTemplateColumns={{ base: "repeat(2,1fr)", sm: "repeat(2,1fr)", lg: "repeat(3,1fr)" }} gap={'20px'}>
         {data && data.map(({ _id, content, likes, createdAt, updatedAt, user_id }) =>
-          <Box key={_id} padding={"10px"}>
-            <Text>{content}</Text>
-            <Text color={"green"}>Likes: {likes}</Text>
-            <Text>Posted At: {createdAt}</Text>
-            <Text>Updated At: {updatedAt}</Text>
+          <Box key={_id} padding={"10px"} boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius={"10px"}>
+            <Text>{`Content: ${content}`}</Text>
+            <Text color={"green"} display={"flex"}><AiFillLike fontSize={"22px"} />{`${likes}`}</Text>
+            <Text>{`Posted At: ${createdAt}`}</Text>
+            <Text>{`Updated At: ${updatedAt}`}</Text>
           </Box>
         )}
       </Box>

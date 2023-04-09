@@ -13,12 +13,12 @@ const AllRoutes = () => {
     return (
         <Box>
             <Routes>
-                <Route path='/posts' element={<Posts />}></Route>
-                <Route path='/postAnalytics' element={<PostAnalytics />}></Route>
                 <Route path='/' element={<Users />}></Route>
-                <Route path='/userAnalytics' element={<UserAnalytics />}></Route>
                 <Route path='/:user_id' element={<SingleUser />}></Route>
+                <Route path='/posts' element={<Posts />}></Route>
                 <Route path='/posts/:post_id' element={<SinglePost />}></Route>
+                <Route path='/postAnalytics' element={<PostAnalytics />}></Route>
+                <Route path='/userAnalytics' element={<UserAnalytics />}></Route>
             </Routes>
         </Box>
     );

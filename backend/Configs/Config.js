@@ -1,3 +1,4 @@
+//This is Configuration file used for connect to database to server my mongoose;
 const mongoose = require('mongoose');
 require('dotenv').config();
 
